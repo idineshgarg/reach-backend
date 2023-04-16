@@ -24,4 +24,12 @@ export class UserRepository {
       },
     });
   }
+
+  updateUser(id: string, { firstName, lastName, profilePhoto }) {
+    return this.userRepository.update(id, {
+      firstName,
+      lastName,
+      profilePhoto,
+    });
+  }
 }

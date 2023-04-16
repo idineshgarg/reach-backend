@@ -55,4 +55,31 @@ export class UserService {
     });
     return { accessToken, refreshToken };
   }
+
+  async updateCurrentUser(
+    user: User,
+    firstName = '',
+    lastName = '',
+    profilePhoto = '',
+  ) {
+    if (firstName) {
+      user.firstName = firstName;
+    }
+
+    if (lastName) {
+      user.lastName = lastName;
+    }
+
+    if (profilePhoto) {
+      user.profilePhoto = profilePhoto;
+    }
+
+    await this.userRepository.updateUser(user.id, {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      profilePhoto: user.profilePhoto,
+    });
+
+    return this.userRepository.findUserWhere({ id: user.id });
+  }
 }

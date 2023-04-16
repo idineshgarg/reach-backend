@@ -13,7 +13,9 @@ export class UserModel {
       firstName: user.firstName,
       lastName: user.lastName,
       phoneNumber: user.phoneNumber,
-      profilePhoto: user.profilePhoto,
+      profilePhoto: user.profilePhoto
+        ? process.env.AWS_CLOUDFRONT_AWS_BUCKET + '/' + user.profilePhoto
+        : null,
     };
   }
 }
